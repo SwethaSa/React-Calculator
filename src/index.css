@@ -1,0 +1,18 @@
+:root {
+  --background-color: tomato;
+  --primary-text-color: white;
+  --text-color: rgb(141, 4, 32);
+  --input-color: rgb(71, 72, 73);
+  --app-color: white;
+  --icon-color: black;
+}
+
+[data-theme="dark"] {
+  --background-color: indigo;
+  --primary-text-color: rgb(13, 241, 5);
+  --text-color: white;
+  --input-color: rgb(71, 72, 73);
+  --app-color: rgb(39, 11, 70);
+  background-color: rgb(34, 2, 65);
+  --icon-color: white;
+}

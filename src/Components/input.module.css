@@ -1,0 +1,39 @@
+.main {
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  border-radius: 40px;
+  height: 18cm;
+  width: max-content;
+  margin: auto;
+  padding: 0;
+  padding-bottom: 10px;
+  box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+}
+.mains {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 85%;
+  padding: 10px;
+  font-size: x-large;
+  text-align: right;
+  outline: none;
+  margin-left: 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--background-color);
+  color: var(--input-color);
+  font-family: Rajdhani;
+}
+
+.result {
+  text-align: right;
+  width: 90%;
+  margin-left: 20px;
+  font-size: 40px;
+  color: var(--primary-text-color);
+}

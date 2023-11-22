@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: Rajdhani;
+}
+
+.calci {
+  text-align: center;
+  font-size: 60px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 8px var(--background-color);
+  color: var(--text-color);
+}
+
+.mode {
+  color: var(--icon-color);
+  font-size: xx-large;
+  display: flex;
+  gap: 20px;
+  align-items: end;
+  justify-content: end;
+}
+
+.mode:hover {
+  cursor: pointer;
+}
