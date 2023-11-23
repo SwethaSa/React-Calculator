@@ -13,13 +13,54 @@ export default function Input() {
     setInput(e.target.value);
   };
 
+  let audio1 = new Audio("src/assets/Music1.mp3");
+  let audio2 = new Audio("src/assets/Music2.mp3");
+  let evaluateCalculation = () => {
+    if (!input) return;
+    let regExp = /([*+%÷-])/;
+    let parting = input.split(regExp);
+    let result = parseFloat(parting[0]);
+
+    if (regExp.test(input[0])) {
+      alert("Please enter Numbers First");
+      setInput(0);
+    }
+
+    for (let i = 1; i < parting.length; i += 2) {
+      let operator = parting[i];
+      let operand = parseFloat(parting[i + 1]);
+
+      if (operator === "÷") {
+        result /= operand;
+      } else if (operator === "*") {
+        result *= operand;
+      } else if (operator === "+") {
+        result += operand;
+      } else if (operator === "-") {
+        result -= operand;
+      } else if (operator === "%") {
+        result = (result * operand) / 100;
+      } else {
+        alert(
+          "Please Ensure the the entered value is only numbers and these *+%÷- operators only. "
+        );
+        return;
+      }
+    }
+    setResult(result);
+  };
+
+  useEffect(() => {
+    evaluateCalculation();
+  }, [input]);
+
   return (
     <>
       <div className={styles.mains}>
         <div className={styles.main}>
           <div className={styles.sub}>
             <div className={styles.result}>
-              <h1>{result}</h1>
+              <h1>{isNaN(result) ? input : result}</h1>
             </div>
             <input
               placeholder="0"
@@ -29,15 +70,38 @@ export default function Input() {
               value={input}
             />
             <TopRow
+              audio1={audio1}
+              audio2={audio2}
+              input={input}
+              setInput={setInput}
               setResult={setResult}
-              result={result}
+            />
+            <SecondRow
+              audio1={audio1}
+              audio2={audio2}
               input={input}
               setInput={setInput}
             />
-            <SecondRow input={input} setInput={setInput} />
-            <ThirdRow input={input} setInput={setInput} />
-            <FourthRow input={input} setInput={setInput} />
-            <LastRow input={input} setInput={setInput} />
+            <ThirdRow
+              audio1={audio1}
+              audio2={audio2}
+              setResult={setResult}
+              input={input}
+              setInput={setInput}
+            />
+            <FourthRow
+              audio1={audio1}
+              audio2={audio2}
+              input={input}
+              setInput={setInput}
+            />
+            <LastRow
+              audio1={audio1}
+              audio2={audio2}
+              evaluateCalculation={evaluateCalculation}
+              input={input}
+              setInput={setInput}
+            />
           </div>
         </div>
       </div>

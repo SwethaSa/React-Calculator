@@ -1,58 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styles from "./top.module.css";
 
-export default function TopRow({ result, setResult, input, setInput }) {
-  console.log(typeof input);
+export default function TopRow({ setResult, input, setInput, audio1 }) {
   let handleClear = () => {
+    audio1.play();
     setInput("");
+    setResult("0");
   };
 
   let handleBackSpace = () => {
+    audio1.play();
     let value = input.slice(0, -1);
     setInput(value);
+    if (input.length === 1) {
+      setResult("0");
+    }
   };
 
-  useEffect(() => {
-    let percentage = () => {
-      if (input.includes("%")) {
-        let parts = input.split("%");
-        let operand1 = parseFloat(parts[0]);
-        let operand2 = parseFloat(parts[1]);
-
-        if (
-          !isNaN(operand1) &&
-          !isNaN(operand2) &&
-          operand1 != 0 &&
-          operand2 != 0
-        ) {
-          let percent = (operand1 * operand2) / 100;
-          setResult(percent.toString());
-        }
-      }
-    };
-
-    percentage();
-
-    let divide = () => {
-      if (input.includes("÷")) {
-        let parts = input.split("÷");
-        let operand1 = parseFloat(parts[0]);
-        let operand2 = parseFloat(parts[1]);
-
-        if (
-          !isNaN(operand1) &&
-          !isNaN(operand2) &&
-          operand1 != 0 &&
-          operand2 != 0
-        ) {
-          let percent = operand1 / operand2;
-          setResult(percent.toString());
-        }
-      }
-    };
-
-    divide();
-  }, [input, setInput]);
+  let handleOperator = (value) => {
+    audio1.play();
+    let lastChar = input.slice(-1);
+    if (!isNaN(lastChar) || lastChar === ".") {
+      setInput(input + value);
+    } else if (lastChar === value) {
+      alert("Please enter only one Operator after and before");
+    }
+  };
 
   return (
     <>
@@ -66,7 +39,7 @@ export default function TopRow({ result, setResult, input, setInput }) {
         <button
           className={styles.percent}
           onClick={() => {
-            setInput(input + "%");
+            handleOperator("%");
           }}
         >
           %
@@ -74,7 +47,7 @@ export default function TopRow({ result, setResult, input, setInput }) {
         <button
           className={styles.divide}
           onClick={() => {
-            setInput(input + "÷");
+            handleOperator("÷");
           }}
         >
           ÷
