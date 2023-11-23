@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopRow from "./TopRow";
 import SecondRow from "./SecondRow";
 import ThirdRow from "./ThirdRow";
@@ -8,6 +8,7 @@ import styles from "./input.module.css";
 
 export default function Input() {
   let [input, setInput] = useState("");
+  let [result, setResult] = useState(0);
   let handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -18,7 +19,7 @@ export default function Input() {
         <div className={styles.main}>
           <div className={styles.sub}>
             <div className={styles.result}>
-              <h1>0</h1>
+              <h1>{result}</h1>
             </div>
             <input
               placeholder="0"
@@ -27,7 +28,12 @@ export default function Input() {
               type="text"
               value={input}
             />
-            <TopRow input={input} setInput={setInput} />
+            <TopRow
+              setResult={setResult}
+              result={result}
+              input={input}
+              setInput={setInput}
+            />
             <SecondRow input={input} setInput={setInput} />
             <ThirdRow input={input} setInput={setInput} />
             <FourthRow input={input} setInput={setInput} />

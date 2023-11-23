@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Input from "./Components/Input";
 import "./App.css";
 import "./index.css";
+import useLocalStorage from "use-local-storage";
 
 export function App() {
-  let [isDark, setIsDark] = useState("dark");
+  let [isDark, setIsDark] = useLocalStorage("dark");
   let handleLight = () => {
     setIsDark("light");
   };

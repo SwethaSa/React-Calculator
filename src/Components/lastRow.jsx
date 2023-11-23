@@ -29,8 +29,8 @@ export default function LastRow({ input, setInput }) {
         </button>
         <button
           className={styles.equal}
-          onClick={() => {
-            setInput(input + "=");
+          onClick={(e) => {
+            setInput(eval(input));
           }}
         >
           =
